@@ -2,7 +2,8 @@
 {
     public class OrderDetail
     {
-        public int Id { get; set; }
+  //nice
+       public int Id { get; set; }
 
         public Book Books { get; set; }
 
