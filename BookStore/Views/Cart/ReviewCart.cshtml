@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BookStore.Models.Cart>
+
+@{
+    ViewBag.Title = "ReviewCart";
+}
+<div class="panel panel-default">
+    <div class="panel-heading"> <h2>@ViewBag.Title</h2></div>
+
+
+    <div class="table-responsive">
+        <table class="table table-hover ">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            @{
+                decimal total = 0;
+            }
+            @foreach (var book in Model)
+            {
+                
+                <tr>
+                    <td>@book.Books.Title</td>
+                    <td>@book.Books.Author</td>
+                    <td>@book.Books.Publisher</td>
+                    <td>@Html.DisplayFor(b => book.Books.Price)</td>
+                    
+                    <td><a href="#" class="js-Remove-Book" data-book-id="@book.Books.Id">Remove</a></td>
+
+                </tr>
+                total += @book.Books.Price;
+            }
+            <tr><td colspan="4">Total</td><td>@Html.DisplayFor(x=>total)</td> </tr>
+        </table>
+
+    </div>
+</div>
+
+

@@ -1,0 +1,24 @@
+﻿@model BookStore.ViewModels.CategoryViewModel
+
+@{
+    ViewBag.Title = "Add Category";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AddCategory", "Book"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c=>c.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(c=>c.name)
+        @Html.TextBoxFor(c=>c.name, new { @class="form-control",autofocus="autofocus" })
+        @Html.ValidationMessageFor(c=>c.name)
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Add</button>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

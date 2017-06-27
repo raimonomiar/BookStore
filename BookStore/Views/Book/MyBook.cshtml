@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+
+@{
+    ViewBag.Title = "MyBook";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"> <h2 >Book List</h2></div>
+
+
+    <div class="table-responsive">
+        <table class="table table-hover ">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Edition Year</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Publisher</td>
+                    <td>@book.Edition</td>
+                    <td>@book.Categorys.name</td>
+                    <td>@Html.DisplayFor(b=>book.Price)</td>
+                    <td><a href="@Url.Action("Edit","Book",new { id = book.Id })">Edit</a></td>
+                    <td><a href="#" class="js-Remove-Book" data-book-id="@book.Id">Remove</a></td>
+                    
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+@section scripts{
+ 
+    <script>
+        $(document).ready(function () {
+
+            $(".js-Remove-Book").click(function (e) {
+
+                var link = $(e.target);
+                bootbox.dialog({
+                    message: "Are you sure you want to remove the book?",
+                    title: "Remove Book?",
+                    buttons: {
+                        no: {
+                            label: 'No'
+
+
+                        },
+                        yes: {
+                            label: 'Yes',
+                            callback: function () {
+
+                                $.ajax({
+
+                                    url: "/api/book/" + link.attr("data-book-id"),
+                                    method: 'DELETE',
+
+                                })
+                                    .done(function () {
+                                        link.parents("tr").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(function () {
+                                        alert("Something went wrong!");
+                                    });
+                            }
+
+                        }
+                    }  
+                });
+
+            });
+});
+
+    </script>
+    }

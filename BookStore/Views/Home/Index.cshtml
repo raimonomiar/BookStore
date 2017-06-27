@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BookStore.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Book Categories</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="square">
+                    <a id="a" href="@Url.Action("BrowseByCategory","Book", new { name = item.name.Replace(" ","-") })">
+                        <div class="content">
+                            <span>@item.name</span>
+                        </div>
+                    </a>
+        </div>
+
+            </div>
+    
+    }
+    <div class="col-xs-6 col-sm-4 col-md-3">
+        <a href="~/Book/AddCategory"><img src="~/Resource/add.png" /></a> 
+    </div>
+</div>

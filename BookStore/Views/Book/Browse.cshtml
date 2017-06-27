@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+@{
+    ViewBag.Title = "Browse";
+}
+
+<h2>Browsing</h2>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="thumbnail">
+                <b>@item.Title</b><br />
+                by <i>@item.Author</i><br />
+                @item.Publisher<br />
+                
+           @Html.DisplayFor(p=>item.Price)<br />
+                <a href="#" class="btn btn-primary js-add-cart"  data-book-id="@item.Id" role="button">Add To CheckList</a>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts{
+    
+    <script>
+
+        $(document).ready(function () {
+
+            $(".js-add-cart").on("click",function (e) {
+        
+                var link = $(e.target);
+
+                $.ajax({
+                    url: "/api/cart/" + link.attr("data-book-id"),
+                    method:"POST"
+                })
+                    .done(function () {
+
+                        bootbox.alert({
+                            message: "Added To Checklist",
+                            size: 'small'
+                        });
+                        Cart();
+                    
+        
+                    })
+                    .fail(function () {
+                        bootbox.alert("Something went wrong!!");
+                    })
+                
+            })
+        });
+
+    </script>
+
+    
+    }

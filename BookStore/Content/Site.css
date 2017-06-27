@@ -1,0 +1,178 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.currency{
+    color:green;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.square {
+    position: relative;
+    width: 100%;
+    background-color:#262626;
+    text-align:center;
+
+}
+
+    .square:after {
+        content: "";
+        display: block;
+        padding-bottom: 50%;
+        margin-bottom:10%;
+    }
+
+ #a, #a:visited, #a:hover, #a:active {
+    color: inherit;
+    text-decoration:none !important;
+}
+.content {
+    position: center;
+    padding-top: 25%;
+}
+    .content > span {
+        color: #ffffff;
+        font-size: 1.5em;
+    }
+    .content>img{
+        height:auto;
+        width:auto;
+    }
+
+/*Bootstrap Overide*/
+
+
+.navbar-inverse {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 5px 5px 5px 2px #979797;
+}
+    .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+        color: #979797;
+    }
+
+.navbar-inverse .navbar-brand {
+        color: #262626;
+    }
+    .navbar-inverse .navbar-nav > li > a{
+        color:#262626;
+    } 
+    .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+        color: #979797;
+    }
+
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus .btn-primary:hover {
+        background-color: gray;
+    }
+    
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{
+        background-color:gray;
+    }
+
+   .notifiactions{
+        position:relative;
+    }
+
+   .badge{
+        position:absolute;
+        top:-10px;
+        left:10px;
+        
+
+    }
+
+    .btn-primary:active:hover,
+    .btn-primary.active:hover,
+    .open > .dropdown-toggle.btn-primary:hover,
+    .btn-primary:active:focus,
+    .btn-primary.active:focus,
+    .open > .dropdown-toggle.btn-primary:focus,
+    .btn-primary:active.focus,
+    .btn-primary.active.focus,
+    .open > .dropdown-toggle.btn-primary.focus {
+        background-color: #ffffff;
+        color:#262626;
+    }
+
+.btn-primary{
+
+    background-color:#262626;
+}
+
+.btn-primary:hover {
+    background-color: #262626;
+}
+    .btn-primary:focus, .focus.btn-primary {
+        background-color:#262626;
+    }
+body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    /* Set width on the form input elements since they're 100% wide by default */
+    input, select, textarea {
+        max-width: 280px;
+    }
+
+    .mainbox{
+        margin-top:50px;
+    }
+
+    
+    .mainbox .panel-body{
+        padding-top:30px;
+
+    }
+
+    .mainbox .panel-body>div{
+        display:none;
+    }
+
+    .mainbox .panel-body .credit{
+        margin-bottom:25px;
+
+    }
+
+        .mainbox .panel-body .form-group{
+            margin-top:10px;
+        }
+        .mainbox .panel-body .form-group .account{
+            border-top:1px solid #888;
+            padding-top:15px;
+            font-size:85%;
+
+        }
+
+        .mainbox .panel-heading .SignIn{
+            float:right;
+            font-size:85%;
+            position:relative;
+            top:-10px;
+
+        }   
+        .validation-summary-errors>ul   {
+            list-style:none;
+        }

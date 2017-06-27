@@ -1,0 +1,66 @@
+﻿@model BookStore.ViewModels.OrderViewModel
+
+@if (User.Identity.IsAuthenticated)
+{
+
+  
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                 @using (Html.BeginForm("GetOrder", "Cart"))
+                {
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover " id="refTable">
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Publisher</th>
+                                <th>Edition Year</th>
+                                <th>Price</th>
+                               <th></th>
+                            </tr>
+
+                            @{ 
+                                decimal total = 0;
+                            }
+                            @foreach (var book in Model.Carts)
+                            {
+                                <tr>
+                                    <td>@book.Books.Title</td>
+                                    <td>@book.Books.Author</td>
+                                    <td>@book.Books.Publisher</td>
+                                    <td>@book.Books.Edition</td>
+                                    <td>@Html.DisplayFor(b => book.Books.Price)</td>
+                                    <td><a href="#" class="js-cart-remove" data-cart-id="@book.Id"><i class="glyphicon glyphicon-remove"/></a></td>
+                                </tr>
+                                total += book.Books.Price;
+                            }
+                         
+                            <tr><td colspan="4">Total</td><td>@Html.DisplayFor(x => total)</td></tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+              
+
+            
+                <div class="modal-footer">
+                 <button type="submit" class="btn btn-primary">Checkouy</button>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+                                    
+                                }
+
+                                
+

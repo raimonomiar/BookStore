@@ -1,0 +1,54 @@
+﻿@model  BookStore.ViewModels.BookViewModels
+
+@{
+    ViewBag.Title = "Book";
+}
+
+<h2>Book</h2>
+
+@using (Html.BeginForm(Model.Action, "Book"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(b=>b.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(b=>b.Title)
+        @Html.TextBoxFor(b=>b.Title, new {@class = "form-control" ,autofocus = "autofocus"})
+        @Html.ValidationMessageFor(b=>b.Title)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(b => b.Author)
+        @Html.TextBoxFor(b => b.Author, new { @class = "form-control"})
+        @Html.ValidationMessageFor(b => b.Author)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(b => b.Publisher)
+        @Html.TextBoxFor(b => b.Publisher, new { @class = "form-control"})
+        @Html.ValidationMessageFor(b => b.Publisher)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(b => b.Edition)
+        @Html.TextBoxFor(b => b.Edition, new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Edition)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(b => b.Price)
+        @Html.TextBoxFor(b => b.Price, new {  @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Price)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(b => b.CategoryId)
+        @Html.DropDownListFor(b => b.CategoryId, new SelectList(Model.Categorys,"id","name"),"Choose your category" , new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.CategoryId)
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button> 
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

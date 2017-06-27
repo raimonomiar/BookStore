@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+@{
+    ViewBag.Title = "Browse";
+}
+
+<h2>Browsing</h2>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="thumbnail">
+                <b>@item.Title</b><br />
+                by <i>@item.Author</i><br />
+                @item.Publisher<br />
+                @item.Price<br />
+                <a href="#" class="btn btn-primary " role="button">Add To CheckList</a>
+            </div>
+        </div>
+    }
+</div>
