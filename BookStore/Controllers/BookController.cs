@@ -7,17 +7,15 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
+using BookStore.Repository;
 
 namespace BookStore.Controllers
 {
     public class BookController : Controller
     {
-        private readonly ApplicationDbContext _context;
 
-        public BookController()
-        {
-            _context = new ApplicationDbContext();
-        }
+        private IBookRepository repoB = new BookRepository();
+        private ICategoryRepository repoC = new CategoryRepository();
 
         // GET: Book
         public ActionResult Index()
@@ -46,15 +44,16 @@ namespace BookStore.Controllers
             {
                 name = _catModel.name
             };
-            _context.Categorys.Add(category);
-            _context.SaveChanges();
+            repoC.Add(category);
+
+
             return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
         public ActionResult Add()
         {
-            var Category = _context.Categorys.ToList();
+            var Category = repoC.GetCategory();
 
             var bModel = new BookViewModels
             {
@@ -69,9 +68,10 @@ namespace BookStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(BookViewModels _bModel)
         {
+
             if (!ModelState.IsValid)
             {
-                _bModel.Categorys = _context.Categorys.ToList();
+                _bModel.Categorys = repoC.GetCategory();
 
                 return View("Book", _bModel);
             }
@@ -87,9 +87,7 @@ namespace BookStore.Controllers
                 UserId = User.Identity.GetUserId()
                 
             };
-
-            _context.Books.Add(books);
-            _context.SaveChanges();
+            repoB.Add(books);
 
             return RedirectToAction("ShowMyBooks");
         }
@@ -99,20 +97,16 @@ namespace BookStore.Controllers
         {
             var UserId = User.Identity.GetUserId();
 
-            var MyBooks = _context.Books
-                .Where(u => u.UserId == UserId)
-                .Include(c=>c.Categorys)
-                .ToList();
+            var MyBooks = repoB.FindByID(UserId);
+                
 
             return View("MyBook", MyBooks);
         }
 
        
-        public ActionResult BrowseByCategory(string name)
+        public ActionResult BrowseByCategory(int id)
         {
-            var book = _context.Books
-                .Where(b => b.Categorys.name == name)
-                .ToList();
+            var book = repoB.Browse(id);
 
             if (book==null)
             {
@@ -126,10 +120,9 @@ namespace BookStore.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var books = _context.Books
-                .Include(c => c.Categorys)
-                .Include(u => u.Users)
-                .SingleOrDefault(b => b.Id == id);
+            var userId = User.Identity.GetUserId();
+
+            var books = repoB.FindBook(id, userId);
             if (books==null)
             {
                 return HttpNotFound();
@@ -143,7 +136,7 @@ namespace BookStore.Controllers
                 Publisher = books.Publisher,
                 Edition = books.Edition,
                 CategoryId = books.Id,
-                Categorys = _context.Categorys.ToList(),
+                Categorys = repoC.GetCategory(),
                 Price=books.Price
             };
 
@@ -162,8 +155,7 @@ namespace BookStore.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            var book = _context.Books
-                .Single(b=>b.Id == _bModel.Id && b.UserId == userId);
+            var book = repoB.FindBook(_bModel.Id,userId);
 
             book.Author = _bModel.Author;
             book.Edition = _bModel.Edition;
@@ -172,8 +164,7 @@ namespace BookStore.Controllers
             book.Publisher = _bModel.Publisher;
             book.Price = _bModel.Price;
 
-            _context.Entry(book).State = EntityState.Modified;
-            _context.SaveChanges();
+            repoB.Edit(book);
 
             return RedirectToAction("ShowMyBooks");
         }

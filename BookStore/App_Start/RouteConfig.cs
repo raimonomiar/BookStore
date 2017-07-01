@@ -16,10 +16,10 @@ namespace BookStore
             routes.MapRoute(
                 
                 name:"IndexRoute",
-                url:"Book/Category/{name}",
-                defaults: new { controller="Book",action="BrowseByCategory"}
+                url:"Book/Category/{name}/{id}",
+                defaults: new { controller="Book",action="BrowseByCategory",id=UrlParameter.Optional}
                 );
-
+            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

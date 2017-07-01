@@ -10,7 +10,7 @@
 
         <div class="col-xs-6 col-sm-4 col-md-3">
                 <div class="square">
-                    <a id="a" href="@Url.Action("BrowseByCategory","Book", new { name = item.name.Replace(" ","-") })">
+                    <a id="a" href="@Url.Action("BrowseByCategory","Book", new { name= item.name.Replace(" ","-"),id=item.Id })">
                         <div class="content">
                             <span>@item.name</span>
                         </div>

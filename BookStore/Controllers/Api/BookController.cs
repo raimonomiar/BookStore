@@ -6,29 +6,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
+using BookStore.Repository;
 
 namespace BookStore.Api.Controllers
 {
+
+
     [Authorize]
     public class BookController : ApiController
     {
-        private readonly ApplicationDbContext _context;
-        public BookController()
-        {
-            _context = new ApplicationDbContext();
-        }
-
+        
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
+            IBookRepository repoB = new BookRepository();
+
             var userId = User.Identity.GetUserId();
 
-            var book = _context.Books
-                .Single(b => b.Id == id && b.UserId == userId);
+            var book = repoB.FindBook(id, userId);
 
-            _context.Books.Remove(book);
-
-            _context.SaveChanges();
+            repoB.Delete(book);
 
             return Ok();
         }

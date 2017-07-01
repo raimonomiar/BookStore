@@ -232,6 +232,11 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Repository\BookRepository.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\IBookRepository.cs" />
+    <Compile Include="Repository\ICategoryRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
