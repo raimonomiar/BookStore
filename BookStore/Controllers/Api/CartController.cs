@@ -7,19 +7,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
+using BookStore.Repository;
 
 namespace BookStore.Controllers.Api
 {
     [Authorize]
     public class CartController : ApiController
     {
-        private readonly ApplicationDbContext _context;
-
-        public CartController()
-        {
-            _context = new ApplicationDbContext();
-        }
-
+        private ICartRepository repoC = new CartRepository();
+     
         [HttpPost]
         public IHttpActionResult AddToCart(int id)
         {
@@ -35,8 +31,7 @@ namespace BookStore.Controllers.Api
 
             };
 
-            _context.Carts.Add(cart);
-            _context.SaveChanges();
+            repoC.Add(cart);
 
             return Ok();
         }
@@ -46,10 +41,7 @@ namespace BookStore.Controllers.Api
         {
             var userid = User.Identity.GetUserId();
 
-            var count = _context.Carts
-                .Where(u=>u.UserId == userid)
-                .Count();
-
+            var count = repoC.Count(userid);
 
             return Ok(count);
         }
@@ -64,11 +56,9 @@ namespace BookStore.Controllers.Api
             }
             var userid = User.Identity.GetUserId();
             
-            var getcart = _context.Carts
-                .SingleOrDefault(c => c.Id == id && c.UserId == userid );
+            var getcart =repoC.GetCart(id, userid);
 
-            _context.Carts.Remove(getcart);
-            _context.SaveChanges();
+            repoC.Delete(getcart);
 
             return Ok();
 

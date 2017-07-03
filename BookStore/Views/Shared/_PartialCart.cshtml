@@ -1,4 +1,4 @@
-﻿@model BookStore.ViewModels.OrderViewModel
+﻿@model IEnumerable<BookStore.Models.Cart>
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -28,7 +28,7 @@
                             @{ 
                                 decimal total = 0;
                             }
-                            @foreach (var book in Model.Carts)
+                            @foreach (var book in Model)
                             {
                                 <tr>
                                     <td>@book.Books.Title</td>

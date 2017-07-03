@@ -12,9 +12,11 @@ namespace BookStore.ViewModels
     
         public OrderViewModel()
         {
-            Carts = new List<Cart>();
+            Detail = new List<OrderDetail>();
         }
 
-        public List<Cart> Carts { get; set; }
+        public List<OrderDetail> Detail{ get; set; }
+
+        public decimal Total { get; set ; }
     }
 }

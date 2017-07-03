@@ -233,10 +233,14 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Repository\BookRepository.cs" />
+    <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\IBookRepository.cs" />
+    <Compile Include="Repository\ICartRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
+    <Compile Include="Repository\IOrderRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -329,6 +333,7 @@
     <Content Include="Views\Shared\_PartialCart.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Cart\ReviewCart.cshtml" />
+    <Content Include="Views\Cart\OrderSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

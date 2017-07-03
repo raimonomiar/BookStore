@@ -7,36 +7,27 @@ using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using BookStore.ViewModels;
+using BookStore.Repository;
 
 namespace BookStore.Controllers
 {
     public class CartController : Controller
     {
-        private readonly ApplicationDbContext _context;
 
-        public CartController()
-        {
-            _context = new ApplicationDbContext();
-        }
+        private ICartRepository repoC = new CartRepository();
 
-        // GET: Cart
+        private IOrderRepository repoO = new OrderRepository();
         
         [ChildActionOnly]
         public ActionResult Index()
         {
             var userid = User.Identity.GetUserId();
 
-            var cart = _context.Carts
-                .Include(b => b.Books)
-                .Where(u => u.UserId == userid)
-                .ToList();
+            var cart = (List<Cart>)repoC.FindByID(userid);
 
-            var orderModel = new OrderViewModel()
-            {
-                Carts = cart
-            };
+           
             
-            return PartialView("_PartialCart",orderModel);
+            return PartialView("_PartialCart",cart);
         }
 
         [Authorize]
@@ -46,24 +37,17 @@ namespace BookStore.Controllers
 
             var userid = User.Identity.GetUserId();
 
-            var cart = _context.Carts
-                .Include(b => b.Books)
-                .Where(u => u.UserId == userid)
-                .ToList();
-
-            var unit = cart.Count;
-
-            var total = cart.Sum(p => p.Books.Price);
+            var cart = (List<Cart>)repoC.FindByID(userid);
 
             var order = new Order
             {
                 Date = DateTime.Now,
-                Units = unit,
-                Total=total,
+                Units = repoC.Count(userid),
+                Total=repoC.CartTotal(cart),
                 UserId = User.Identity.GetUserId()
 
             };
-            _context.Orders.Add(order);
+            repoO.Add(order);
 
             foreach (var item in cart)
             {
@@ -75,12 +59,23 @@ namespace BookStore.Controllers
                     UserId = item.UserId,
 
                 };
-                _context.Details.Add(orderDetail);
+                repoO.Add(orderDetail);
             }
 
-            _context.SaveChanges();
-            return View("Index", "Cart");
-        }
+          
+
+            repoC.ClearCart(cart);
+            repoO.Save();
+            var orderModel = new OrderViewModel
+            {
+                Detail = repoO.GetDetail(userid,order.Id),
+                Total = order.Total
+            };
+
+
+
+            return View("OrderSummary",orderModel);
+        } 
 
 
     }
