@@ -14,12 +14,15 @@ namespace BookStore.Controllers
     public class CartController : Controller
     {
 
-        private ICartRepository repoC = new CartRepository();
+        private readonly ICartRepository repoC;
 
-        private IOrderRepository repoO = new OrderRepository();
+        private readonly IOrderRepository repoO;
 
-        public CartController()
+        public CartController(ICartRepository _repoC, IOrderRepository _repoO)
         {
+            repoC = _repoC;
+
+            repoO = _repoO;
 
         }
 

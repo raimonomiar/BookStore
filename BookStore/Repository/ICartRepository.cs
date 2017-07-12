@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Repository
 {
-    interface ICartRepository:IRepository<Cart>
+    public interface ICartRepository:IRepository<Cart>
     {
         int Count(string userid);
 

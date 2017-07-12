@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Repository
 {
-    interface IOrderRepository:IRepository<Order>
+    public interface IOrderRepository:IRepository<Order>
     {
         void Add(OrderDetail model);
         void Save();

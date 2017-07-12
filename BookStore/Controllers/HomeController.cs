@@ -1,4 +1,5 @@
 ﻿using BookStore.Models;
+using BookStore.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,17 @@ namespace BookStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryRepository repoC;
 
-        public HomeController()
+
+        public HomeController(ICategoryRepository _repoC)
         {
-            _context = new ApplicationDbContext();
+            repoC = _repoC;
         }
         
         public ActionResult Index()
         {
-            var categorys = _context.Categorys.ToList();
+            var categorys = repoC.GetCategory();
 
             return View(categorys);
         }

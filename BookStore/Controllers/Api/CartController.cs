@@ -14,8 +14,13 @@ namespace BookStore.Controllers.Api
     [Authorize]
     public class CartController : ApiController
     {
-        private ICartRepository repoC = new CartRepository();
-     
+        private readonly ICartRepository repoC; 
+
+        public CartController(ICartRepository _repoC)
+        {
+            repoC = _repoC;
+        }
+
         [HttpPost]
         public IHttpActionResult AddToCart(int id)
         {

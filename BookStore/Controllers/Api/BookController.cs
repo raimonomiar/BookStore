@@ -15,11 +15,17 @@ namespace BookStore.Api.Controllers
     [Authorize]
     public class BookController : ApiController
     {
-        
+        private readonly IBookRepository repoB;
+
+        public BookController(IBookRepository _repoB)
+        {
+            repoB = _repoB;
+        }
+
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            IBookRepository repoB = new BookRepository();
+           
 
             var userId = User.Identity.GetUserId();
 
