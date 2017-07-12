@@ -388,3 +388,10 @@ C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\obj\Debug\BookStore.
 C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\obj\Debug\BookStore.csproj.GenerateResource.Cache
 C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\obj\Debug\BookStore.dll
 C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\obj\Debug\BookStore.pdb
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.dll
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.Common.dll
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.Mvc.dll
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\WebActivatorEx.dll
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.xml
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.Common.xml
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.Mvc.xml

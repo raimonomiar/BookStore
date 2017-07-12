@@ -17,7 +17,12 @@ namespace BookStore.Controllers
         private ICartRepository repoC = new CartRepository();
 
         private IOrderRepository repoO = new OrderRepository();
-        
+
+        public CartController()
+        {
+
+        }
+
         [ChildActionOnly]
         public ActionResult Index()
         {

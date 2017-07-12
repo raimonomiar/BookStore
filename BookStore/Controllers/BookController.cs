@@ -14,8 +14,14 @@ namespace BookStore.Controllers
     public class BookController : Controller
     {
 
-        private IBookRepository repoB = new BookRepository();
-        private ICategoryRepository repoC = new CategoryRepository();
+        private readonly IBookRepository repoB;
+        private readonly ICategoryRepository repoC;
+
+        public BookController(IBookRepository _repoB,ICategoryRepository _repoC)
+        {
+            repoB = _repoB;
+            repoC = _repoC;
+        }
 
         // GET: Book
         public ActionResult Index()
