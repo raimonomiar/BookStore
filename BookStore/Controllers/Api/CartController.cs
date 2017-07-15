@@ -14,10 +14,12 @@ namespace BookStore.Controllers.Api
     [Authorize]
     public class CartController : ApiController
     {
-        private readonly ICartRepository repoC; 
+
+        private ICartRepository repoC;
 
         public CartController(ICartRepository _repoC)
         {
+              
             repoC = _repoC;
         }
 

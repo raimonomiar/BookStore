@@ -395,3 +395,5 @@ C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\WebActivatorEx.d
 C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.xml
 C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.Common.xml
 C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.Mvc.xml
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.WebApi.dll
+C:\Users\raimonomiar\Documents\Projects\BookStore\BookStore\bin\Ninject.Web.WebApi.xml
